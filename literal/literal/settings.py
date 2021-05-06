@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+
+    'apps.authentication.apps.AuthConfig',
+    'apps.mailer.apps.MailerConfig',
+    'apps.scanner.apps.ScannerConfig',
 ]
 
 MIDDLEWARE = [
@@ -94,16 +98,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.authentication.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.authentication.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.authentication.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.authentication.password_validation.NumericPasswordValidator',
     },
 ]
 
