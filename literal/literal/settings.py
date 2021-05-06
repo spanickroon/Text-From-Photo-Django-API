@@ -116,7 +116,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
         ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'authentication.backends.JWTAuthentication',
+        'apps.authentication.backends.JWTAuthentication',
         )
 }
 
