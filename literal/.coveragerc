@@ -1,0 +1,29 @@
+[run]
+include =
+        ./apps/*
+omit =
+        *tests*
+        *testing*
+        *migrations*
+        *manage.py*
+        *urls*
+        *apps.py*
+        *constants.py*
+        *gunicorn.py*
+        *exceptions*
+        *admin.py*
+        *dto.py*
+
+        *asgi.py*
+        *wsgi.py*
+        *setting.py*
+        *models.py*
+        *__init__.py*
+        *.venv*
+
+[report]
+skip_empty=False
+show_missing=True
+ignore_errors=True
+sort=cover
+
