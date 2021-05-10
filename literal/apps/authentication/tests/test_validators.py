@@ -1,4 +1,4 @@
-import unittest
+from django.test import TestCase
 from parameterized import parameterized, param
 
 from rest_framework.validators import ValidationError
@@ -6,7 +6,7 @@ from rest_framework.validators import ValidationError
 from apps.authentication.validators import AuthenticationValidator
 
 
-class AuthenticationValidatorTestCase(unittest.TestCase):
+class AuthenticationValidatorTestCase(TestCase):
     def setUp(self) -> None:
         super().setUp()
 
