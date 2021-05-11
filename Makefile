@@ -4,14 +4,15 @@ set_console_env:
 	. ./variables/console_dev.env
 	export $(cut -d= -f1 ./variables/console_dev.env)
 
-makemigrations:
-	docker-compose -p literal_makemigrations run --rm --entrypoint "./manage.py makemigrations" app
+migrations:
+	docker-compose  run --rm --entrypoint "./manage.py makemigrations" app
 
 migrate:
-	docker-compose -p literal_migrate run --rm --entrypoint "./manage.py migrate" app
+	docker-compose  run --rm --entrypoint "./manage.py migrate" app
 
 build:
-	docker stop literal_app_1 || docker rm literal_app_1 || docker rmi literal_app -f
+	docker stop literal_postres || docker rm literal_postres || echo "Deleted postres"
+	docker stop literal_app || docker rm literal_app || docker rmi literal -f || echo "Deleted app"
 	docker-compose -f docker-compose.yml up --build -d
 
 start:

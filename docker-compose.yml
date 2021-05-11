@@ -2,15 +2,30 @@ version: "3.5"
 
 services:
   app:
-    image: "literal_app"
-    container_name: "literal_app_1"
+    image: "literal"
+    container_name: "literal_app"
     build: literal
     volumes:
       - ./literal/:/app/
     command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - postgres
     ports:
       - "8010:8000"
     expose:
       - 8010
     env_file:
         - variables/dev.env
+    entrypoint: /app_bin/waiting.sh postgres:5431 --timeout=0 --
+
+  postgres:
+    image: postgres:12.0-alpine
+    container_name: "literal_postgres"
+    volumes:
+      - ./volumes/postgres/data:/var/lib/postgresql/data/
+    expose:
+      - 5431
+    ports:
+      - "5431:5431"
+    env_file:
+      - ./variables/dev.env
