@@ -8,4 +8,3 @@ class AuthenticationServicesTestCase(TestCase):
         super().setUp()
 
         self.service = AuthenticationServices
-

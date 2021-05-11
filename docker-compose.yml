@@ -11,4 +11,4 @@ services:
     expose:
       - 8010
     env_file:
-        - ./variables/dev.env
+        - variables/dev.env
