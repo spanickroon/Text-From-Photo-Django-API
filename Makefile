@@ -22,3 +22,10 @@ start:
 
 down:
 	docker-compose down --remove-orphans
+
+test:
+	docker-compose run --rm --entrypoint "./manage.py test" app
+
+test-coverage:
+	docker-compose run --rm --entrypoint "coverage run manage.py test" app
+	docker-compose run --rm app coverage report
