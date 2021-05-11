@@ -17,7 +17,7 @@ build:
 
 start:
 	make build
-	make makemigrations
+	make migrations
 	make migrate
 
 down:
