@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Hello world action step
-        uses: ./docker-compose.yaml
+        uses: ./
       - name: Build images
         run: |
           make start
