@@ -13,3 +13,27 @@ jobs:
       - name: Build images
         run: |
           make start
+
+  linting:
+    name: Linting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pylint
+        run: |
+          make pylint
+      - name: Mypy
+        run: |
+          make mypy
+      - name: Black
+        run: |
+          make black
+  
+  testing:
+    name: Testing
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test coverage
+        run: |
+          make test-coverage
