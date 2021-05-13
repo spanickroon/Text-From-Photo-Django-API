@@ -17,7 +17,7 @@ build:
 	docker stop literal_postres || docker rm literal_postres || echo "Deleted postres"
 	docker stop literal_app || docker rm literal_app || docker rmi literal -f || echo "Deleted app"
 	docker stop literal_nginx || docker rm literal_nginx || echo "Deleted nginx"
-	docker-compose -f docker-compose.yml up --build -d
+	docker-compose -f docker-compose.yaml up --build -d
 
 start:
 	make build

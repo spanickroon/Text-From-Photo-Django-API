@@ -1,0 +1,14 @@
+name: Django CI/CD
+
+on: [push]
+
+jobs:
+
+  build:
+    name: Build Docker Images
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build images
+      run: |
+        make start
