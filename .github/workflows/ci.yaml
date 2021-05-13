@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: Build images
         run: |
-          docker-compose -f ../../docker-compose.yaml up --build -d
+          echo #PWD
