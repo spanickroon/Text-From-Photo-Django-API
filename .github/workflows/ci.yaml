@@ -1,6 +1,6 @@
 name: Django CI/CD
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -16,7 +16,7 @@ jobs:
 
   linting:
     name: Linting
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, docker]
     needs: [build]
 
     steps:
@@ -34,7 +34,7 @@ jobs:
 
   testing:
     name: Testing
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, docker]
     needs: [build, linting]
 
     steps:
