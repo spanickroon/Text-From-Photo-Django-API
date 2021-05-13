@@ -13,6 +13,5 @@ jobs:
       - name: Hello world action step
         uses: ./ # Uses an action in the root directory
       - name: Build images
-        uses: ./
         run: |
           make start
