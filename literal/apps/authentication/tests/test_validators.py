@@ -1,6 +1,5 @@
 from django.test import TestCase
-from parameterized import parameterized, param
-
+from parameterized import param, parameterized
 from rest_framework.validators import ValidationError
 
 from apps.authentication.validators import AuthenticationValidator

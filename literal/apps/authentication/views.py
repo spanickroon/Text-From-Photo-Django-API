@@ -1,17 +1,17 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework.request import Request
 from rest_framework import status
+from rest_framework.request import Request
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from .serializers import RegisterSerializer, LoginSerializer
-from .services import AuthenticationServices
 from .dto import AuthenticationDTO
 from .exceptions import (
-    UserAlreadyExists,
-    TokenForUserAlreadyExists,
-    UserDoesNotExists,
     TokenDoesNotExists,
+    TokenForUserAlreadyExists,
+    UserAlreadyExists,
+    UserDoesNotExists,
 )
+from .serializers import LoginSerializer, RegisterSerializer
+from .services import AuthenticationServices
 
 
 class RegisterAPIView(APIView):

@@ -1,19 +1,18 @@
 from django.contrib.auth.models import User
-
 from rest_framework.authtoken.models import Token
 
-from .dto import AuthenticationDTO, RegisterDTO, LoginDTO
-from .exceptions import (
-    UserDoesNotExists,
-    UserAlreadyExists,
-    TokenDoesNotExists,
-    TokenForUserAlreadyExists,
-)
 from .constants import (
-    USER_DOES_NOT_EXISTS_ERROR_MESSAGE,
-    USER_ALREADY_EXISTS_ERROR_MESSAGE,
     TOKEN_DOES_NOT_EXISTS_ERROR_MESSAGE,
     TOKEN_FOR_USER_ALREADY_EXISTS_ERROR_MESSAGE,
+    USER_ALREADY_EXISTS_ERROR_MESSAGE,
+    USER_DOES_NOT_EXISTS_ERROR_MESSAGE,
+)
+from .dto import AuthenticationDTO, LoginDTO, RegisterDTO
+from .exceptions import (
+    TokenDoesNotExists,
+    TokenForUserAlreadyExists,
+    UserAlreadyExists,
+    UserDoesNotExists,
 )
 
 

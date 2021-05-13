@@ -1,7 +1,5 @@
 from django.contrib.auth.models import User
-
-from rest_framework import serializers
-from rest_framework import validators
+from rest_framework import serializers, validators
 
 from .validators import AuthenticationValidator
 
