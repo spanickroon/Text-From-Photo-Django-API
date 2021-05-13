@@ -20,6 +20,8 @@ jobs:
     needs: [build]
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Pylint
         run: |
           make pylint
@@ -36,6 +38,8 @@ jobs:
     needs: [build, linting]
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Test coverage
         run: |
           make test-coverage
