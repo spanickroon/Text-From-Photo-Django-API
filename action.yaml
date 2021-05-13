@@ -1,0 +1,10 @@
+name: Django CI/CD 2
+
+description:
+  test
+
+runs:
+  using: "composite"
+  steps:
+    - run: docker-compose -f docker-compose.yaml up --build -d
+      shell: bash
