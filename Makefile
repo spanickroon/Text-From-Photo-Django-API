@@ -8,17 +8,22 @@ migrations:
 	docker-compose  run --rm --entrypoint "./manage.py makemigrations" app
 
 migrate:
-	docker-compose  run --rm --entrypoint "./manage.py migrate" app
+	docker-compose  run --rm --entrypoint "./manage.py migrate --no-input" app
+
+static:
+	docker-compose  run --rm --entrypoint "./manage.py collectstatic --no-input" app
 
 build:
 	docker stop literal_postres || docker rm literal_postres || echo "Deleted postres"
 	docker stop literal_app || docker rm literal_app || docker rmi literal -f || echo "Deleted app"
+	docker stop literal_nginx || docker rm literal_nginx || echo "Deleted nginx"
 	docker-compose -f docker-compose.yml up --build -d
 
 start:
 	make build
 	make migrations
 	make migrate
+	make static
 
 down:
 	docker-compose down --remove-orphans
