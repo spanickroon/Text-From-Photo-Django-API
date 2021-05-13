@@ -3,26 +3,12 @@ name: Django CI/CD
 on: [push]
 
 jobs:
-  publish_image_to_github:
-    name: Push Docker image to GitHub Packages
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out the repo
-        uses: actions/checkout@v2
-      - name: Push to GitHub Packages
-        uses: docker/build-push-action@v2
-        with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          repository: my-org/my-repo/my-image
-          tag_with_ref: true
-
   build:
     name: Build Docker Images
     runs-on: ubuntu-latest
 
     steps:
       - name: Build images
+        uses: ./
         run: |
-          echo #PWD
+          make start
