@@ -59,8 +59,23 @@ confidence=
 #
 # Kubeflow disables string-interpolation because we are starting to use f
 # style strings
-disable=import-star-module-level,old-octal-literal,oct-method,print-statement,unpacking-in-except,parameter-unpacking,backtick,old-raise-syntax,old-ne-operator,long-suffix,dict-view-method,dict-iter-method,metaclass-assignment,next-method-called,raising-string,indexing-exception,raw_input-builtin,long-builtin,file-builtin,execfile-builtin,coerce-builtin,cmp-builtin,buffer-builtin,basestring-builtin,apply-builtin,filter-builtin-not-iterating,using-cmp-argument,useless-suppression,range-builtin-not-iterating,suppressed-message,missing-docstring,no-absolute-import,old-division,cmp-method,reload-builtin,zip-builtin-not-iterating,intern-builtin,unichr-builtin,reduce-builtin,standarderror-builtin,unicode-builtin,xrange-builtin,coerce-method,delslice-method,getslice-method,setslice-method,input-builtin,round-builtin,hex-method,nonzero-method,map-builtin-not-iterating,relative-import,invalid-name,bad-continuation,no-member,locally-disabled,fixme,import-error,too-many-locals,no-name-in-module,too-many-instance-attributes,no-self-use,logging-fstring-interpolation
-
+disable=
+    attribute-defined-outside-init,
+    duplicate-code,
+    invalid-name,
+    missing-docstring,
+    protected-access,
+    too-few-public-methods,
+    # handled by black
+    format,
+    fixme,
+    unused-argument,
+    keyword-arg-before-vararg,
+    logging-format-interpolation,
+    raise-missing-from,
+    not-a-mapping,
+    no-name-in-module,
+    no-member
 
 [REPORTS]
 
@@ -236,7 +251,7 @@ max-module-lines=1000
 # String used as indentation unit. This is usually "    " (4 spaces) or "\t" (1
 # tab).
 # Use 2 spaces consistent with TensorFlow style.
-indent-string='  '
+indent-string='    '
 
 # Number of spaces of indent required inside a hanging  or continued line.
 indent-after-paren=4

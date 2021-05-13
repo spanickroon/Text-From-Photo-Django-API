@@ -17,7 +17,7 @@ from .services import AuthenticationServices
 class RegisterAPIView(APIView):
     serializer_class = RegisterSerializer
 
-    def post(self, request: Request, *args, **kwargs) -> Response:
+    def post(self, request: Request) -> Response:
         serializer = self.serializer_class(data=request.data)
 
         if serializer.is_valid():
@@ -37,7 +37,7 @@ class RegisterAPIView(APIView):
 class LoginAPIView(APIView):
     serializer_class = LoginSerializer
 
-    def post(self, request: Request, *args, **kwargs) -> Response:
+    def post(self, request: Request) -> Response:
         serializer = self.serializer_class(data=request.data)
 
         if serializer.is_valid():

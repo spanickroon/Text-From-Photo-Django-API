@@ -1,7 +1,11 @@
 coverage==5.5
+black==21.5b0
 Django==3.2.2
 djangorestframework==3.12.4
 gunicorn==20.1.0
+isort==5.8.0
+mypy==0.812
 parameterized==0.8.1
 psycopg2-binary==2.8.6
 pydantic==1.8.1
+pylint==2.8.2

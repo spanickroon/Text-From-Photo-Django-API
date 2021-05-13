@@ -29,3 +29,34 @@ test:
 test-coverage:
 	docker-compose run --rm --entrypoint "coverage run manage.py test" app
 	docker-compose run --rm app coverage report
+
+isort:
+	docker-compose run --rm app isort /app
+
+black:
+	docker-compose run --rm app black /app
+
+mypy:
+	docker-compose run --rm app mypy /app
+
+pylint:
+	docker-compose run --rm app pylint apps literal
+
+prepare-commit:
+	make isort
+	make black
+	make pylint
+	make mypy
+
+literal-shell:
+	docker exec -it literal_app bash
+
+literal-postgres-shell:
+	docker exec -it literal_postgres bash
+
+logs:
+	docker-compose logs -f --tail 100
+
+logs-app:
+	docker-compose logs -f --tail 100 app
+
