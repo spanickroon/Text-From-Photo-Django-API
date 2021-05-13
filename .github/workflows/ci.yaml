@@ -10,8 +10,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Hello world action step
-        uses: ./
       - name: Build images
         run: |
           make start
