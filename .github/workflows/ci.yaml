@@ -17,6 +17,7 @@ jobs:
   linting:
     name: Linting
     runs-on: ubuntu-latest
+    needs: [build]
 
     steps:
       - name: Pylint
@@ -28,10 +29,11 @@ jobs:
       - name: Black
         run: |
           make black
-  
+
   testing:
     name: Testing
     runs-on: ubuntu-latest
+    needs: [build, linting]
 
     steps:
       - name: Test coverage
