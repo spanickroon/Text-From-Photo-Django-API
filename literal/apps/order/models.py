@@ -1,4 +1,5 @@
 from django.db import models
+
 from apps.authentication.models import UserProfile
 
 
@@ -17,6 +18,11 @@ class Order(models.Model):
     userprofile = models.ForeignKey(
         UserProfile, on_delete=models.CASCADE, related_name="orders"
     )
+
     date = models.DateTimeField(auto_now=True, null=False)
-    image = models.ImageField(null=True)
+    image = models.ImageField(null=False, upload_to="files/")
     status = models.CharField(max_length=30, choices=CHOICES, default=ACTIVE)
+    text = models.TextField(null=True)
+
+    def __str__(self) -> str:
+        return f"{self.userprofile.user.username} - {self.date} - {self.image.name}"

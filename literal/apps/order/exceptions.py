@@ -1,0 +1,2 @@
+class UserProfileDoesNotExists(Exception):
+    pass
