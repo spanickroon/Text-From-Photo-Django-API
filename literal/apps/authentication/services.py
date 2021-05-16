@@ -36,10 +36,9 @@ class AuthenticationServices:
 
     @staticmethod
     def login(data: AuthenticationDTO) -> LoginDTO:
-        print("HI")
         user = authenticate(username=data.username, password=data.password)
 
-        if not user:
+        if user is None:
             raise UserDoesNotExists(USER_DOES_NOT_EXISTS_ERROR_MESSAGE)
 
         if not Token.objects.filter(user=user).exists():

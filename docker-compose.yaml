@@ -5,8 +5,7 @@ services:
     image: "literal"
     container_name: "literal_app"
     build: literal
-    restart: always
-    command: stdbuf -oL python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000
     depends_on:
       - postgres
     ports:
