@@ -7,6 +7,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api-authentication/", include("rest_framework.urls")),
     path("api/v1/authentication/", include("apps.authentication.urls")),
+    path("api/v1/order/", include("apps.order.urls")),
 ]
 
 if bool(settings.DEBUG):

@@ -24,7 +24,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "apps.authentication",
     "apps.mailer",
-    "apps.scanner",
+    "apps.order",
 ]
 
 

@@ -15,6 +15,7 @@ from .exceptions import (
     UserAlreadyExists,
     UserDoesNotExists,
 )
+from .models import UserProfile
 
 
 class AuthenticationServices:
@@ -26,6 +27,8 @@ class AuthenticationServices:
         user = User.objects.create_user(
             username=data.username, password=data.password, email=data.email
         )
+
+        UserProfile.objects.create(user=user)
 
         if Token.objects.filter(user=user).exists():
             raise TokenForUserAlreadyExists(TOKEN_FOR_USER_ALREADY_EXISTS_ERROR_MESSAGE)
