@@ -115,3 +115,30 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "%(levelname)s  %(asctime)s  %(module)s "
+            "%(process)d  %(thread)d  %(message)s"
+        },
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        }
+    },
+    "loggers": {
+        "apps": {"level": "INFO", "handlers": ["console"], "propagate": False},
+        "django.db.backends": {
+            "level": "ERROR",
+            "handlers": ["console"],
+            "propagate": False,
+        },
+    },
+}
+

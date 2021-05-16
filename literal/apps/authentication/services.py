@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 
@@ -26,7 +27,7 @@ class AuthenticationServices:
             username=data.username, password=data.password, email=data.email
         )
 
-        if not Token.objects.filter(user=user).exists():
+        if Token.objects.filter(user=user).exists():
             raise TokenForUserAlreadyExists(TOKEN_FOR_USER_ALREADY_EXISTS_ERROR_MESSAGE)
 
         token = Token.objects.create(user=user)
@@ -35,12 +36,11 @@ class AuthenticationServices:
 
     @staticmethod
     def login(data: AuthenticationDTO) -> LoginDTO:
-        if not User.objects.filter(
-            username=data.username, password=data.password
-        ).exists():
-            raise UserDoesNotExists(USER_DOES_NOT_EXISTS_ERROR_MESSAGE)
+        print("HI")
+        user = authenticate(username=data.username, password=data.password)
 
-        user = User.objects.get(username=data.username, password=data.password)
+        if not user:
+            raise UserDoesNotExists(USER_DOES_NOT_EXISTS_ERROR_MESSAGE)
 
         if not Token.objects.filter(user=user).exists():
             raise TokenDoesNotExists(TOKEN_DOES_NOT_EXISTS_ERROR_MESSAGE)
