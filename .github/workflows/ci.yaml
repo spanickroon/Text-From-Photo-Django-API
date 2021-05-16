@@ -44,18 +44,3 @@ jobs:
         run: |
           make test
 
-  publish:
-    name: Publish
-    runs-on: ubuntu-20.04
-    needs: [build, linting, testing]
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Push to Docker Hub
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ${{ secrets.DOCKER_USERNAME }}/literal
-          tag_with_ref: true
