@@ -17,6 +17,7 @@ services:
     volumes:
       - ./literal/:/app/
       - static_volume:/app/static
+      - media_volume:/app/mediafiles
 
   postgres:
     image: postgres:12.0-alpine
@@ -39,7 +40,9 @@ services:
       - app
     volumes:
       - static_volume:/app/staticfiles
+      - media_volume:/app/mediafiles
 
 volumes:
   postgres_data:
   static_volume:
+  media_volume:

@@ -64,11 +64,6 @@ WSGI_APPLICATION = "literal.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-    }
-    if os.environ.get("DJANGO_LOCAL_TESTING_MODE")
-    else {
         "ENGINE": os.environ.get("DATABASE_ENGINE"),
         "NAME": os.environ.get("PG_DB"),
         "USER": os.environ.get("PG_USER"),
@@ -117,6 +112,8 @@ USE_TZ = True
 
 STATIC_URL = "/staticfiles/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+MEDIA_URL = "/mediafiles/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
