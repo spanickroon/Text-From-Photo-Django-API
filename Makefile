@@ -65,3 +65,14 @@ logs:
 logs-app:
 	docker-compose logs -f --tail 100 app
 
+build-prod:
+	docker stop literal_postres || docker rm literal_postres || echo "Deleted postres"
+	docker stop literal_app || docker rm literal_app || docker rmi literal -f || echo "Deleted app"
+	docker stop literal_nginx || docker rm literal_nginx || echo "Deleted nginx"
+	docker-compose -f docker-compose.prod.yaml up --build -d
+
+start-prod:
+	make build-prod
+	make migrations
+	make migrate
+	make static
