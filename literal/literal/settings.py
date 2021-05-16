@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 
-DEBUG = os.environ.get("DEBUG")
+DEBUG = os.environ.get("DJANGO_DEBUG")
 
 
 ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0", "localhost"]
@@ -64,6 +64,11 @@ WSGI_APPLICATION = "literal.wsgi.application"
 
 DATABASES = {
     "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+    }
+    if os.environ.get("DJANGO_LOCAL_TESTING_MODE")
+    else {
         "ENGINE": os.environ.get("DATABASE_ENGINE"),
         "NAME": os.environ.get("PG_DB"),
         "USER": os.environ.get("PG_USER"),
@@ -141,4 +146,3 @@ LOGGING = {
         },
     },
 }
-
