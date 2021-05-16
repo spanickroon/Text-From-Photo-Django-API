@@ -1,4 +1,4 @@
-name: Django CI/CD
+name: Literal CI/CD
 
 on: [push]
 
