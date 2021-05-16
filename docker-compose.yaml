@@ -15,7 +15,8 @@ services:
     env_file:
         - variables/dev.env
     volumes:
-      - static_volume:/app/staticfiles
+      - ./literal/:/app/
+      - static_volume:/app/static
 
   postgres:
     image: postgres:12.0-alpine

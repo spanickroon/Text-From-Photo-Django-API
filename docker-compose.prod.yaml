@@ -16,6 +16,7 @@ services:
     env_file:
         - variables/prod.env
     volumes:
+      - ./literal/:/app/
       - static_volume:/app/staticfiles
 
   postgres:
