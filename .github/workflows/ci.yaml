@@ -1,10 +1,10 @@
 name: Django CI/CD
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build:
-    name: Build
+    name: Build Docker Images
     runs-on: ubuntu-latest
 
     steps:
