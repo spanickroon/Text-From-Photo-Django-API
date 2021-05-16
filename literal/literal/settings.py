@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "apps.authentication",
     "apps.mailer",
     "apps.order",
+    "apps.scanner",
 ]
 
 

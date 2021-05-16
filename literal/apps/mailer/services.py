@@ -18,3 +18,6 @@ class MailerService:
         )
 
         mail.send()
+
+        order.status = order.SENT
+        order.save()
