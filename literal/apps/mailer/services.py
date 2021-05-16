@@ -1,4 +1,4 @@
-from django.core.mail import EmailMessage, get_connection
+from django.core.mail import EmailMessage
 
 from apps.order.models import Order
 
