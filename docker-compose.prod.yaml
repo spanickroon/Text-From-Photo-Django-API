@@ -5,10 +5,10 @@ services:
     image: "literal"
     container_name: "literal_app"
     build: literal
-    restart: always
-    command: gunicorn literal.wsgi:application --workers=4 --bind 0.0.0.0:8000 --reload
+    command: python manage.py runserver 0.0.0.0:8000
     depends_on:
       - postgres
+      - celery
     ports:
       - "8000:8000"
     expose:
@@ -17,7 +17,7 @@ services:
         - variables/prod.env
     volumes:
       - ./literal/:/app/
-      - static_volume:/app/staticfiles
+      - static_volume:/app/static
       - media_volume:/app/mediafiles
 
   postgres:
@@ -33,6 +33,7 @@ services:
       - postgres_data:/var/lib/postgresql/data/
 
   nginx:
+    image: "literal_nginx_image"
     build: nginx
     container_name: "literal_nginx"
     ports:
@@ -43,7 +44,32 @@ services:
       - static_volume:/app/staticfiles
       - media_volume:/app/mediafiles
 
+  redis:
+    container_name: "literal_redis"
+    image: redis:5.0.4-alpine
+    volumes:
+      - redis_data:/data
+    env_file:
+       - ./variables/prod.env
+    ports:
+      - "6379:6379"
+    expose:
+      - 6379
+
+  celery:
+    image: "literal_celery_image"
+    container_name: "literal_celery"
+    build: literal
+    command: celery -A literal worker -l info
+    volumes:
+      - celery_volume/:/usr/src/app/
+    env_file:
+       - ./variables/prod.env
+    depends_on:
+      - redis
+
 volumes:
   postgres_data:
   static_volume:
   media_volume:
+  celery_volume:

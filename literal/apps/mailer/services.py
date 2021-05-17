@@ -12,7 +12,10 @@ class MailerService:
 
         mail = EmailMessage(
             subject="New image order",
-            body=f"<h2>Hello, {user_name}</h2>\n\nText from file:\n\n{order.text}",
+            body=(
+                f"Hello, {user_name}\n\nYour order from {order.date} to {order.image.name}\n\n\n"
+                f"Text from file:\n\n{order.text}"
+            ),
             to=[user_email],
             attachments=[(order.image.name, order.image.read(), "application/png")],
         )
