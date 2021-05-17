@@ -1,3 +1,5 @@
+from logging import getLogger
+
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
@@ -19,7 +21,8 @@ class OrderAPIView(APIView):
         if serializer.is_valid():
             try:
                 OrderService.create_order(file=request.FILES["image"], request=request)
-            except UserProfileDoesNotExists:
+            except UserProfileDoesNotExists as exc:
+                getLogger(name=__name__).error(msg=str(exc))
                 return Response(
                     status=status.HTTP_400_BAD_REQUEST, data=serializer.errors
                 )

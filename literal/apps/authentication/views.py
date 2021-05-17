@@ -1,3 +1,5 @@
+from logging import getLogger
+
 from rest_framework import status
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -26,6 +28,7 @@ class RegisterAPIView(APIView):
                     data=AuthenticationDTO(**serializer.data)
                 )
             except (UserAlreadyExists, TokenForUserAlreadyExists) as exc:
+                getLogger(name=__name__).error(msg=str(exc))
                 return Response(
                     status=status.HTTP_400_BAD_REQUEST, data={"message": str(exc)}
                 )
@@ -46,6 +49,7 @@ class LoginAPIView(APIView):
                     data=AuthenticationDTO(**serializer.data)
                 )
             except (UserDoesNotExists, TokenDoesNotExists) as exc:
+                getLogger(name=__name__).error(msg=str(exc))
                 return Response(
                     status=status.HTTP_400_BAD_REQUEST, data={"message": str(exc)}
                 )
