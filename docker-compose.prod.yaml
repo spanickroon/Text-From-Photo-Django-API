@@ -63,6 +63,7 @@ services:
     command: celery -A literal worker -l info
     volumes:
       - celery_volume/:/usr/src/app/
+      - media_volume:/app/mediafiles
     env_file:
        - ./variables/prod.env
     depends_on:
@@ -73,3 +74,4 @@ volumes:
   static_volume:
   media_volume:
   celery_volume:
+  redis_data:
