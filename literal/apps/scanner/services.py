@@ -1,7 +1,7 @@
 import io
 import json
 import os
-from typing import Optional, Union
+from typing import Optional
 
 import cv2
 import requests
@@ -30,7 +30,7 @@ class ScannerService:
         result: Response = requests.post(
             url,  # type: ignore
             files={f"screenshot{order.extension}": file_bytes},
-            data={"apikey": os.environ.get("OCR_API_KEY"), "language": order.language},
+            data={"apikey": os.environ.get("OCR_API_KEY")},
         )
 
         result = json.loads(result.content.decode())

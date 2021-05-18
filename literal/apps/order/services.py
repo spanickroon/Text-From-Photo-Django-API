@@ -24,11 +24,13 @@ class OrderService:
     def create_order(file: InMemoryUploadedFile, request: Request) -> None:
         try:
             userprofile = UserProfile.objects.get(user=request.user)
-            order = Order.objects.create(userprofile=userprofile, image=file)
+            order = Order.objects.create(
+                userprofile=userprofile,
+                image=file,
+                extension=file.name[file.name.rindex(".") :],
+            )
             userprofile.quantity_orders += 1
             userprofile.save()
         except UserProfile.DoesNotExist:
             raise UserProfileDoesNotExists(USER_PROFILE_ERROR)
-        # order_task.delay(order_id=order.pk)
-        ScannerService.scan_image(order_id=order.pk)
-        MailerService.send_message(order_id=order.pk)
+        order_task.delay(order_id=order.pk)

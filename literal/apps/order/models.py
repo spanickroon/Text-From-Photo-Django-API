@@ -25,7 +25,6 @@ class Order(models.Model):
     text = models.TextField(null=True)
 
     extension = models.CharField(max_length=10, null=True)
-    language = models.CharField(max_length=10, null=True)
 
     def __str__(self) -> str:
         return f"{self.userprofile.user.username} - {self.date} - {self.image.name}"
