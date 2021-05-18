@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 
-DEBUG = True if os.environ.get("DJANGO_DEBUG") == str(1) else False
+DEBUG = bool(int(os.environ.get("DJANGO_DEBUG")))
 
 ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0", "localhost"]
 
