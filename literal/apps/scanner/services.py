@@ -1,9 +1,11 @@
 import io
 import json
 import os
+from typing import Optional, Union
 
 import cv2
 import requests
+from rest_framework.response import Response
 
 from apps.order.models import Order
 
@@ -23,14 +25,15 @@ class ScannerService:
         _, compressed_image = cv2.imencode(order.extension, roi, [1, 90])
         file_bytes = io.BytesIO(compressed_image)
 
-        result = requests.post(
-            os.environ.get("OCR_API_URL"),
-            files={"screenshot.jpg": file_bytes},
+        url: Optional[str] = os.environ.get("OCR_API_URL")
+
+        result: Response = requests.post(
+            url,  # type: ignore
+            files={f"screenshot{order.extension}": file_bytes},
             data={"apikey": os.environ.get("OCR_API_KEY"), "language": order.language},
         )
 
-        result = result.content.decode()
-        result = json.loads(result)
+        result = json.loads(result.content.decode())
 
         parsed_results = result.get("ParsedResults")[0]
         text_detected = parsed_results.get("ParsedText")
