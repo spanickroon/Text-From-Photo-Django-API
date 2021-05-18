@@ -9,7 +9,7 @@ class AuthenticationValidatorTestCase(TestCase):
     def setUp(self) -> None:
         super().setUp()
 
-        self.validators = AuthenticationValidator
+        self.validator = AuthenticationValidator
 
     @parameterized.expand(
         [
@@ -37,7 +37,7 @@ class AuthenticationValidatorTestCase(TestCase):
         ]
     )
     def test__text_validator__success(self, _, value, expected_value):
-        self.assertEqual(self.validators.text_validator(value), expected_value)
+        self.assertEqual(self.validator.text_validator(value), expected_value)
 
     @parameterized.expand(
         [
@@ -50,4 +50,4 @@ class AuthenticationValidatorTestCase(TestCase):
     )
     def test__text_validator__raise_exception(self, _, value):
         with self.assertRaises(ValidationError):
-            self.validators.text_validator(value)
+            self.validator.text_validator(value)
