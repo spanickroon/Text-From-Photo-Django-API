@@ -1,7 +1,6 @@
 from time import sleep
 
 from django.core.files.uploadedfile import InMemoryUploadedFile
-from django.db.models.query import QuerySet
 from rest_framework.request import Request
 
 from apps.mailer.services import MailerService

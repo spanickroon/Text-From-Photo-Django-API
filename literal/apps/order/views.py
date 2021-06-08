@@ -38,5 +38,4 @@ class OrderAPIView(APIView):
 
         if serializer.is_valid():
             return Response(status=status.HTTP_200_OK, data=serializer.data)
-        else:
-            return Response(status=status.HTTP_400_BAD_REQUEST, data=serializer.errors)
+        return Response(status=status.HTTP_400_BAD_REQUEST, data=serializer.errors)
