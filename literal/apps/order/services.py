@@ -1,6 +1,7 @@
 from time import sleep
 
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.db.models.query import QuerySet
 from rest_framework.request import Request
 
 from apps.mailer.services import MailerService
@@ -34,3 +35,7 @@ class OrderService:
         except UserProfile.DoesNotExist:
             raise UserProfileDoesNotExists(USER_PROFILE_ERROR)
         order_task.delay(order_id=order.pk)
+
+    @staticmethod
+    def get_orders_by_user(user_id: int) -> list:
+        return list(Order.objects.filter(userprofile__user_id=user_id).values())

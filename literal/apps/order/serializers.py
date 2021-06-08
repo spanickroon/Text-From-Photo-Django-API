@@ -4,7 +4,7 @@ from .models import Order
 from .validators import FileValidator
 
 
-class OrderSerializer(serializers.ModelSerializer):
+class OrderSerializerRequest(serializers.ModelSerializer):
     image = serializers.ImageField(
         required=True,
         validators=[
@@ -15,3 +15,12 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ["image"]
+
+
+class OrderSerializerResponse(serializers.ModelSerializer):
+    userprofile_id = serializers.IntegerField()
+    image = serializers.CharField()
+
+    class Meta:
+        model = Order
+        fields = ["userprofile_id", "date", "status", "text", "image"]

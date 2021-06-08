@@ -83,3 +83,7 @@ containers:
 
 images:
 	docker images
+
+reload:
+	docker-compose stop
+	docker-compose up -d

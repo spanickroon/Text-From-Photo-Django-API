@@ -7,16 +7,17 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .exceptions import UserProfileDoesNotExists
-from .serializers import OrderSerializer
+from .serializers import OrderSerializerRequest, OrderSerializerResponse
 from .services import OrderService
 
 
 class OrderAPIView(APIView):
     permission_classes = (IsAuthenticated,)
-    serializer_class = OrderSerializer
+    request_serializer_class = OrderSerializerRequest
+    response_serializer_class = OrderSerializerResponse
 
     def post(self, request: Request) -> Response:
-        serializer = self.serializer_class(data=request.data)
+        serializer = self.request_serializer_class(data=request.data)
 
         if serializer.is_valid():
             try:
@@ -29,3 +30,13 @@ class OrderAPIView(APIView):
             return Response(status=status.HTTP_200_OK)
 
         return Response(status=status.HTTP_400_BAD_REQUEST, data=serializer.errors)
+
+    def get(self, request: Request) -> Response:
+        serializer = self.response_serializer_class(
+            data=OrderService.get_orders_by_user(user_id=request.user.pk), many=True
+        )
+
+        if serializer.is_valid():
+            return Response(status=status.HTTP_200_OK, data=serializer.data)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST, data=serializer.errors)
