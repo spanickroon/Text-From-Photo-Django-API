@@ -19,6 +19,9 @@ remove-images:
 
 build:
 	make remove-images
+	make migrations
+	make migrate
+	make static
 	docker-compose -f docker-compose.yaml up --build -d
 
 start:
